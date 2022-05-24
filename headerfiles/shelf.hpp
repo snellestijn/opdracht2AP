@@ -1,17 +1,19 @@
 class Shelf : public IContainer
 {
-private:
-    std::vector<Pallet> pallets;
-
 public:
+    std::vector<Pallet> pallets;
+    
     //constructor
     Shelf();
 
     //getters
-    bool getSoloStatus();
+    bool getSlotStatus();
 
     //pallet methods
     Pallet removePallet(int slot);
-    bool insertPallet(int slot, Pallet* pallet);
+    bool insertPallet(int slot, Pallet * pallet);
     
+    //overrides
+    bool isEmpty() override;
+    bool isFull() override;
 };
