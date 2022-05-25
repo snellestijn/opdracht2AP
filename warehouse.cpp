@@ -1,11 +1,10 @@
 //alle files importeren
 #include <iostream>
 #include <vector>
-#include "headerfiles/warehouse.hpp"
-#include "headerfiles/incontainer.hpp"
-#include "headerfiles/shelf.hpp"
-#include "headerfiles/pallet.hpp"
-#include "headerfiles/employee.hpp"
+#include "warehouse.hpp"
+#include "opslag.hpp"
+#include "employee.hpp"
+
 
 //adds
 void Warehouse::addEmployee(Employee employee){
@@ -21,11 +20,13 @@ bool Warehouse::rearrangeShelf(Shelf & shelf){
     while (x < 3){
         int een = shelf.pallets[x].getItemCount(); int twee = shelf.pallets[(x+1)].getItemCount();
         if (een > twee){
-            een, twee = twee, een;
+            int temp = een;
+            een = twee;
+            twee = temp;
             x +=1;
         }
         else { x = 0;}
-    }
+    } return true;
 }
 bool Warehouse::pickItems(std::string itemName, int itemCount){
     for (Shelf shelf : this->shelves){

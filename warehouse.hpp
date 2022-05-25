@@ -1,3 +1,6 @@
+#include "opslag.hpp"
+#include "employee.hpp"
+#include <vector>
 class Warehouse
 {
 private:

@@ -1,11 +1,42 @@
-//alle files importeren
 #include <iostream>
 #include <vector>
-#include "headerfiles/warehouse.hpp"
-#include "headerfiles/incontainer.hpp"
-#include "headerfiles/shelf.hpp"
-#include "headerfiles/pallet.hpp"
-#include "headerfiles/employee.hpp"
+#include "warehouse.hpp"
+#include "opslag.hpp"
+#include "employee.hpp"
+
+
+//getters
+bool Shelf::getSlotStatus(){
+    if (this->isFull()){
+        return false;
+    } else {return true;}
+}
+
+//pallet methods
+    bool Shelf::removePallet(int slot){
+        if (pallets[slot].getItemCount()){
+        this->pallets.erase(this->pallets.begin()+slot);
+        return true;}
+        return false;
+    }
+    bool Shelf::insertPallet(int slot, Pallet * pallet){
+        if (!(this->isFull())){
+        this->pallets.insert(pallets.begin()+slot,*pallet);
+        return true;
+        } return false;
+    }
+
+//overrides
+    bool Shelf::isEmpty(){
+        if (this->pallets.size()){
+            return false;
+        } else { return true; }
+    }
+    bool Shelf::isFull(){
+        if (this->pallets.size() >= 4){
+            return true;
+        } else { return false; }
+    }
 
 //constructor
 Pallet::Pallet(std::string itemName, int itemCapacity, int itemCount){
