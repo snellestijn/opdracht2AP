@@ -3,7 +3,7 @@ class Employee
 private:
     std::string name;   //immutable
     bool busy;
-    bool forkliftCertificate;
+    bool forkLiftCertificate;
 
 public:
     //constructor
