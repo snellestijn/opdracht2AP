@@ -37,7 +37,6 @@ bool Warehouse::rearrangeShelf(Shelf & shelf,Employee employee){
 bool Warehouse::pickItems(std::string itemName, int itemCount){
     for (Shelf shelf : this->shelves){
         for (Pallet pallet : shelf.pallets){
-            std::cout << pallet.getItemName() << " " << pallet.getItemCount()<<"\n";
             if ((pallet.getItemName() == itemName) && (pallet.getItemCount() >= itemCount)){
                 for (int i = 0; i < itemCount ; i++){
                     pallet.takeOne();
@@ -47,4 +46,9 @@ bool Warehouse::pickItems(std::string itemName, int itemCount){
         }
     }
     return false;
+}
+
+//getters voor testen
+std::vector<Shelf> Warehouse::getShelves(){
+    return shelves;
 }

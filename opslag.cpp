@@ -42,6 +42,8 @@ bool Shelf::isFull(){
     } else { return false; }
 }
 
+
+
 //constructor
 Pallet::Pallet(std::string itemName, int itemCapacity, int itemCount){
     this->itemName = itemName;
@@ -65,13 +67,13 @@ bool Pallet::reallocateEmptyPallet(std::string itemName, int itemCapacity){
 }
 bool Pallet::takeOne(){
     if (!(isEmpty())){
-        itemCount--;
+        itemCount -= 1;
         return true;
     } else {return false;}
 }
 bool Pallet::putOne(){
     if (!isFull()){
-        this->itemCount++;
+        this->itemCount += 1;
         return true;
     } else {return false;}
 }

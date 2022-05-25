@@ -22,4 +22,7 @@ public:
     //pak voorwerpen uit een shelf
     bool pickItems(std::string itemName, int itemCount);
 
+    //getters voor testen
+    std::vector<Shelf> getShelves();
+
 };
