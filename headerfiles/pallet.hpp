@@ -15,8 +15,11 @@ public:
     int getRemainingSpace();
 
     //methodes
-    void reallocateEmptyPallet(std::string itemName, int itemCapacity);
+    bool reallocateEmptyPallet(std::string itemName, int itemCapacity);
     bool takeOne();
     bool putOne();
 
+    //overrides
+    bool isFull() override;
+    bool isEmpty() override;
 };
