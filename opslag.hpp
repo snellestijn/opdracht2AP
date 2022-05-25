@@ -1,11 +1,15 @@
 #pragma once
+//interface klasse
 class IContainer
 {
 public:
+    //functie kijkt of iets vol is
     virtual bool isEmpty() = 0;
+    //functie kijkt of iets leeg is
     virtual bool isFull() = 0;
 };
 
+//klasse van pallet
 class Pallet : public IContainer
 {
 private:
@@ -17,21 +21,27 @@ public:
     //constructor
     Pallet(std::string itemName, int itemCapacity, int itemCount);
 
-    //getters
+    //get naam van item
     std::string getItemName();
+    //get aantal van item
     int getItemCount();
+    //get aantal plekken over in de pallet
     int getRemainingSpace();
 
-    //methodes
+    //verkrijg een lege plek in de pallet
     bool reallocateEmptyPallet(std::string itemName, int itemCapacity);
+    //pak een item
     bool takeOne();
+    //leg een item neer
     bool putOne();
 
-    //overrides
+    //override de is vol functie
     bool isFull() override;
+    //override de is leeg functie
     bool isEmpty() override;
 };
 
+//klasse van shelf
 class Shelf : public IContainer
 {
 public:
@@ -40,12 +50,13 @@ public:
     //constructor
     Shelf();
 
-    //getters
+    //get de de beschikbaarheid van een slot (niet vol)
     bool getSlotStatus();
 
-    //pallet methods
+    //verwijder een pallet
     bool removePallet(int slot);
-    bool insertPallet(int slot, Pallet * pallet);
+    //voeg een pallet toe
+    bool insertPallet(int slot, Pallet pallet);
     
     //overrides
     bool isEmpty() override;

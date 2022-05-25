@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+
+
 class Employee
 {
 private:
@@ -11,12 +13,16 @@ public:
     //constructor
     Employee(std::string name, bool forkLiftCertificate);
 
-    //getters
+    //get employee naam
     std::string getName();
+    //get busy status
     bool getBusy();
+    //get forkliftcertificaat: geeft aan of in staat is tot bepaalde taken te doen
     bool getForkLiftCertificate();
 
-    //setters
+    //set busy status
     void setBusy(bool busy);
+    //set forkliftcertificaat 
     void setForkLiftCertificate(bool forkLiftCertificate);
+
 };

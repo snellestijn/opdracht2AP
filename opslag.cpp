@@ -4,6 +4,10 @@
 #include "opslag.hpp"
 #include "employee.hpp"
 
+//Constructor
+Shelf::Shelf(){
+    pallets = {};
+}
 
 //getters
 bool Shelf::getSlotStatus(){
@@ -13,30 +17,30 @@ bool Shelf::getSlotStatus(){
 }
 
 //pallet methods
-    bool Shelf::removePallet(int slot){
-        if (pallets[slot].getItemCount()){
-        this->pallets.erase(this->pallets.begin()+slot);
-        return true;}
-        return false;
-    }
-    bool Shelf::insertPallet(int slot, Pallet * pallet){
-        if (!(this->isFull())){
-        this->pallets.insert(pallets.begin()+slot,*pallet);
-        return true;
-        } return false;
-    }
+bool Shelf::removePallet(int slot){
+    if (pallets.size() > slot){
+    this->pallets.erase(this->pallets.begin()+slot);
+    return true;}
+    return false;
+}
+bool Shelf::insertPallet(int slot, Pallet pallet){
+    if (!(isFull())){
+    pallets.insert(pallets.begin()+slot,pallet);
+    return true;
+    } return false;
+}
 
 //overrides
-    bool Shelf::isEmpty(){
-        if (this->pallets.size()){
-            return false;
-        } else { return true; }
-    }
-    bool Shelf::isFull(){
-        if (this->pallets.size() >= 4){
-            return true;
-        } else { return false; }
-    }
+bool Shelf::isEmpty(){
+    if (this->pallets.size()){
+        return false;
+    } else { return true; }
+}
+bool Shelf::isFull(){
+    if (pallets.size() == 4){
+        return true;
+    } else { return false; }
+}
 
 //constructor
 Pallet::Pallet(std::string itemName, int itemCapacity, int itemCount){
@@ -55,6 +59,7 @@ bool Pallet::reallocateEmptyPallet(std::string itemName, int itemCapacity){
     if (this->isEmpty()){
         this->itemName = itemName;
         this->itemCapacity = itemCapacity;
+        this->itemCount = 0;
         return true;
     } else {return false;}
 }
@@ -65,12 +70,12 @@ bool Pallet::takeOne(){
     } else {return false;}
 }
 bool Pallet::putOne(){
-    if (!(isFull())){
-        itemCount++;
+    if (!isFull()){
+        this->itemCount++;
         return true;
     } else {return false;}
 }
 
 //override
-bool Pallet::isFull(){return (itemCapacity - itemCount);}
+bool Pallet::isFull(){return (getRemainingSpace() == 0? true : false);}
 bool Pallet::isEmpty(){return (itemCount == 0);}

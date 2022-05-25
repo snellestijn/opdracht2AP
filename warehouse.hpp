@@ -1,3 +1,4 @@
+#pragma once
 #include "opslag.hpp"
 #include "employee.hpp"
 #include <vector>
@@ -11,12 +12,14 @@ public:
     //constructor
     Warehouse();
 
-    //adds
+    //voeg employee toe aan vector met employees
     void addEmployee(Employee employee);
+    //voeg shelf toe aan vector met shelfves
     void addShelf(Shelf shelf);
 
-    //methods
-    bool rearrangeShelf(Shelf & shelf);
+    //verander de volgorde van pallets in een shelf
+    bool rearrangeShelf(Shelf & shelf, Employee employee);
+    //pak voorwerpen uit een shelf
     bool pickItems(std::string itemName, int itemCount);
 
 };

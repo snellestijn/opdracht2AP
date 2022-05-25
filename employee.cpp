@@ -12,7 +12,7 @@ Employee::Employee(std::string name, bool forkLiftCertificate){
     busy = false;
 }
 
-//getters
+
 std::string Employee::getName(){return name;}
 bool Employee::getBusy(){return busy;}
 bool Employee::getForkLiftCertificate(){return forkLiftCertificate;}
